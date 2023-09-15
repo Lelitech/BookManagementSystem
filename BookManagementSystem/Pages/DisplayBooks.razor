@@ -1,0 +1,26 @@
+﻿
+<tr>
+    <td>@Book.Title</td>
+    <td>@Book.Description</td>
+    <td>@Book.Author</td>
+</tr>
+
+<button @onclick="DeleteBook" class="mt-4  btn btn-danger">DELETE</button>
+
+
+@code {
+
+    [Parameter]
+    public Books Book { get; set; }
+
+    [Parameter]
+    public EventCallback<Guid> DeleteId { get; set; }
+
+    public async Task DeleteBook()
+    {
+        await DeleteId.InvokeAsync(Book.Id);
+    }
+
+
+ 
+}

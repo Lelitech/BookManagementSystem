@@ -1,0 +1,95 @@
+﻿@page "/"
+
+<div class="row">
+     @if (books.Count == 0)
+        {
+            <p><i>No Books Available</i></p>
+        }
+        else{
+       <div class="row">
+      
+            <Table>
+         <table class="table table-with-spacing">
+            <thead>
+          <tr>
+              <th scope="col">Book Title</th>
+              <th scope="col">Book Description</th>
+              <th scope="col">Book Author</th>
+          </tr>
+        </thead>
+          <tbody>
+                        @foreach (var book in books)
+                        {
+                            <DisplayBooks Book="book"  DeleteId="DeleteBook"/>
+                        }
+                    </tbody>
+     
+         </table>
+            </Table>
+              
+           
+        </div>
+
+        }
+</div>
+      <AddBook AddNewBook="AddNewBook" />
+        
+
+@code {
+    public List<Books> books = new List<Books>()
+    {
+         new Books()
+        {
+
+            Title = "Gifted Hands",
+            Description = "Inspirational",
+            Author = "Ben Carson"
+        },
+
+        new Books()
+        {
+
+            Title = "Married to a Criminal",
+            Description = "True Life Story",
+            Author = "John Kiriamiti"
+        },
+
+        new Books()
+        {
+
+            Title = "A Heiress Wife",
+            Description = "Romantic",
+            Author = "Catherine Coulter"
+        },
+
+    };
+
+    public void AddNewBook(Books book)
+    {
+        this.books.Add(book);
+    }
+
+    public void DeleteBook(Guid id)
+    {
+        try
+        {
+            var bookToDelete = this.books.Find(x => x.Id == id);
+            this.books.Remove(bookToDelete);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+
+
+
+}
+
+
+
+
+
+
+

@@ -1,0 +1,1 @@
+C:\Users\Admin\source\repos\BookMgtSystem\BookMgtSystem\obj\Debug\net7.0\BookMgtSystem.csproj.AssemblyReference.cache
